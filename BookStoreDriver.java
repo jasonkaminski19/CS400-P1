@@ -67,6 +67,7 @@ public class BookStoreDriver {
 		BookStore bookStore = new BookStore();
 		Boolean KeepRunning = true;
 		Scanner myScanner = new Scanner(System.in);
+		int errors = 0; //if user inputs initial command incorrectly, error increases by one.
 		do {
 		initialMessage();
 
@@ -148,7 +149,7 @@ public class BookStoreDriver {
 						+ " but please correctly enter the title.");
 				break;
 			}
-			if(quittingTime(title)) {
+			if(quittingTime(title)) { // if the user has input quit
 				System.out.println("Thanks for stopping by!");
 				break;
 			}
@@ -164,11 +165,11 @@ public class BookStoreDriver {
 				
 				
 			}while(genre.isEmpty() && genreEmpty < 3 && !(quittingTime(genre)));
-			if(genreEmpty == 3) {
+			if(genreEmpty == 3) { //three incorrect attempts to enter genre so they get removed.
 				System.out.println("You are being kicked out of the store. You may re-enter, "
 						+ "but please correctly enter the title");
 			}
-			if(quittingTime(genre)) {
+			if(quittingTime(genre)) { // if user has input quit
 				System.out.println("Thanks for stoppping by!");
 				break;
 			}
@@ -184,10 +185,10 @@ public class BookStoreDriver {
 			String isbnString = "";
 			do {
 				isbnString = myScanner.nextLine().trim(); // gets user input
-				//System.out.println(isbnString.length());
+				
 				isbnTruthValue = isbnCheck(isbnString);
 				if(isbnTruthValue == false) isbnAttempts ++;
-				//System.out.println(isbnAttempts);
+				
 			}while(!(isbnTruthValue) && isbnAttempts < 3 && !(quittingTime(isbnString)));  //checks for input errors
 				if (isbnAttempts == 3) {
 					System.out.println("You are being kicked out of the store. You may re-enter"
@@ -196,7 +197,7 @@ public class BookStoreDriver {
 					break;
 					
 		}
-				if(quittingTime(isbnString)) {
+				if(quittingTime(isbnString)) { // if user input quit
 					System.out.println("Thanks for stopping by!");
 					break;
 				}
@@ -224,6 +225,15 @@ public class BookStoreDriver {
 			System.out.println("If you would like to leave the store, type 'Quit");
 		}else {
 			System.out.println("Please enter a correct input ");
+			errors ++;
+			
+			if(errors == 3) {
+				System.out.println("You are being removed from the store for"
+						+ " inputting 3 incorrect inputs. You may re-enter, but "
+						+ "please enter the correct inputs.");
+				break;
+						
+			}
 		}
 		
 		}while(KeepRunning);
