@@ -133,7 +133,7 @@ public class HashTableMap<KeyType, ValueType> implements MapADT<KeyType, ValueTy
 			returnable = null;
 		}else {
 		for(Pairs<KeyType, ValueType> item: this.array[position]) {
-			if(item.getKey() == key) {
+			if(item.getKey().equals(key)) {
 				returnable = (ValueType) item.getValue();
 			}
 		}
@@ -182,7 +182,7 @@ public class HashTableMap<KeyType, ValueType> implements MapADT<KeyType, ValueTy
 		int location = hashIt(key);
 		if(this.containsKey(key)) {
 			for(int i = 0; i< this.array[location].size(); i++) {
-				if(this.array[location].get(i).getKey() == key ) {
+				if(this.array[location].get(i).getKey().equals(key)) {
 					returnable = this.array[location].get(i).getValue();
 					this.array[location].remove(i);
 					this.size --;

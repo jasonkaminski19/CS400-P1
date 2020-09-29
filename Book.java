@@ -5,10 +5,9 @@
  *
  */
 public class Book {
-  int isbn; // ISBN number but without first 3 numbers (978); therefore only stores last 10
+  private int isbn; // ISBN number but without first 3 numbers (978); therefore only stores last 10
                     // digits of ISBN # (starts with 1 or 0)
   private String title; // book title
-  //private int price; // book price
   private String genre; // genre of book
   private int quantity; // number of books currently available
 
@@ -17,13 +16,14 @@ public class Book {
    * 
    * @param isbn
    * @param title
+   * @param price
    * @param genre
    * @param quantity
    */
   public Book(int isbn, String title, String genre, int quantity) {
+    super();
     this.isbn = isbn;
     this.title = title;
-    //this.price = price;
     this.genre = genre;
     this.quantity = quantity;
   }
@@ -57,17 +57,11 @@ public class Book {
   }
 
   /**
-   * @return the price of book
-   */
-//  public int getPrice() {
-//    return price;
-//  }
-
-  /**
    * @return the genre of book
    */
   public String getGenre() {
     return genre;
   }
+
 
 }

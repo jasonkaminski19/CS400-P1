@@ -1,3 +1,12 @@
+// --== CS400 File Header Information ==--
+// Name: Jason Kaminski
+// Email: jdkaminski@wisc.edu
+// Team: EE
+// Role: Front-End Developer
+// TA: Keren Chen
+// Lecturer: Gary Dahl
+// Notes to Grader: none !
+
 import java.util.Scanner;
 import java.lang.NumberFormatException;
 public class BookStoreDriver {
@@ -39,12 +48,12 @@ public class BookStoreDriver {
 	 */
 	private static boolean isbnCheck(String userInput) {
 		if(quittingTime(userInput)) return false;
-		if(userInput.isEmpty()) {
+		if(userInput.isEmpty()) { // if the input was empty
 			System.out.println("Please enter the 13 digit ISBN number. This field must not be empty");
 			return false;
 		}
 		
-		if(userInput.length() != 13) {
+		if(userInput.length() != 13) { //  if the isbn is too long or too short
 			System.out.println("Please enter your book's 13 digit ISBN code.");
 			return false;
 		}
@@ -79,7 +88,7 @@ public class BookStoreDriver {
 		//System.out.println(userInput); // prints out the letter they enter. will delete after rigorous checking.
 		if(userInput.toLowerCase().startsWith("b")) { // loop if BUYING a book.
 			System.out.println("Please list the 13 digit ISBN number of the Book, excluding the '#'."
-					+ " EX: 8791001212222: "); 
+					+ " EX: 9781001212222: "); 
 			int isbnAttempts = 0; // if a user commits 3 errors, they will be booted out of the Bookstore.
 			Boolean isbnTruthValue = false; //used to see when to run isbnCheck
 			String isbnString = "";
@@ -103,14 +112,15 @@ public class BookStoreDriver {
 		}
 		
 		Integer isbn = Integer.parseInt(isbnString.substring(4));
-			System.out.println(bookStore.remove(isbn)); //Buy the book.
+			
+			System.out.println(bookStore.remove(isbn) + "\n"); //Buy the book.
 				
 			
 			}// end of startsWithB
 		
 		else if(userInput.toLowerCase().startsWith("d")) { // conditional if DONATING a book
 			System.out.println("Please list the 13 digit ISBN number of the Book, excluding the '#'."
-					+ " EX: 8791001212222: "); 
+					+ " EX: 9781001212222: "); 
 			int isbnAttempts = 0; // if a user commits 3 errors, they will be booted out of the Bookstore.
 			Boolean isbnTruthValue = false;
 			String isbnString = "";
@@ -139,18 +149,18 @@ public class BookStoreDriver {
 			int titleEmpty = 0;
 			do {
 			title = myScanner.nextLine().trim();
-			if(title.isEmpty()) {
+			if(title.isEmpty()) { // if input is nothing, ask for an input
 				System.out.println("Please enter the book title. This field cannot be empty");
 				titleEmpty ++;
 				
 			}
 			}while(title.isEmpty() && titleEmpty < 3 && !(quittingTime(title)));
-			if(titleEmpty == 3) {
+			if(titleEmpty == 3) { // if user commits three errors, remove them from store 
 				System.out.println("You Are being kicked out of the store. You may re-enter,"
 						+ " but please correctly enter the title.");
 				break;
 			}
-			if(quittingTime(title)) { // if the user has input quit
+			if(quittingTime(title)) { // if the user has input "quit"
 				System.out.println("Thanks for stopping by!");
 				break;
 			}
@@ -180,7 +190,7 @@ public class BookStoreDriver {
 		}
 		else if(userInput.toLowerCase().startsWith("c")) { // conditional if checking availability of book
 			System.out.println("Please list the 13 digit ISBN number of the Book, excluding the '#'."
-					+ " EX: 8791001212222: "); 
+					+ " EX: 9781001212222: "); 
 			int isbnAttempts = 0; // if a user commits 3 errors, they will be booted out of the Bookstore.
 			Boolean isbnTruthValue = false;
 			String isbnString = "";
@@ -220,15 +230,15 @@ public class BookStoreDriver {
 		}
 		else if(userInput.toLowerCase().startsWith("h")) { // help method
 			System.out.println("To purchase a Book, type 'B'");
-			System.out.println("To check if a book is available, type 'C");
+			System.out.println("To check if a book is available, type 'C'");
 			System.out.println("To donate a book, type 'D'");
-			System.out.println("If you are about to steal all of our books, type 'S");
-			System.out.println("If you would like to leave the store, type 'Quit");
+			System.out.println("If you are about to steal all of our books, type 'S'");
+			System.out.println("If you would like to leave the store, type 'Quit'" + "\n");
 		}else {
 			System.out.println("Please enter a correct input ");
 			errors ++;
 			
-			if(errors == 3) {
+			if(errors == 3) { // remove user if they commit three errors after initial message
 				System.out.println("You are being removed from the store for"
 						+ " inputting 3 incorrect inputs. You may re-enter, but "
 						+ "please enter the correct inputs.");

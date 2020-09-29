@@ -1,5 +1,5 @@
 // --== CS400 File Header Information ==--
-// Name: Ronnie Inglett
+// Name: Ronnie Inglett & Keegan Ripley
 // Email: ringlett@wisc.edu
 // Team: EE
 // TA: Keren Chen
@@ -19,13 +19,17 @@ public class BookStore extends BookCollection
 	public BookStore()
 	{
 		super(20);
+		numBooks = 0;
 		Book[] books = getInitialBooks();
+		
 		table = new HashTableMap<Integer, Book>(20);
-		for (int i = 0; i<4; i++)
+		
+		// Put the objects from Book.txt into the hash table
+		for (int i = 0; i < books.length && books[i] != null; ++i)
 		{
 			numBooks = numBooks + books[i].getQuantity();
 			// If the object already exists in the hash table, we want to update the quantity of that item in the hash table. This ends up being somewhat
-			// of a lengthy statement.
+			// of a lengthy statement, because you have to reference the key of the book multiple times. However I didn't feel like making a new variable.
 			if (table.containsKey(books[i].getIsbn()))
 			{
 				table.get(books[i].getIsbn()).setQuantity(table.get(books[i].getIsbn()).getQuantity() + books[i].getQuantity());
@@ -87,7 +91,9 @@ public class BookStore extends BookCollection
 		if (containsBook(key))
 		{
 			// Set up a return string
+
 			Book removed = table.get(key);
+
 			String confirmation = "Book bought: " + removed.getTitle();
 		
 			// Update the quantity accordingly
@@ -109,6 +115,7 @@ public class BookStore extends BookCollection
 	public void steal()
 	{
 		table.clear();
+		numBooks=0;
 		System.out.println("The store has been robbed. How tragic.");
 	}
 	
